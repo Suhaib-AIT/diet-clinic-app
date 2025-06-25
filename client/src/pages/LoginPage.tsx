@@ -1,5 +1,14 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Heading,
+  Flex,
+} from '@chakra-ui/react';
 
 type Props = {
   onLogin: (user: string) => void;
@@ -17,28 +26,26 @@ const LoginPage = ({ onLogin }: Props) => {
   };
 
   return (
-    <div className="login-page">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Username:
-            <input value={username} onChange={(e) => setUsername(e.target.value)} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password:
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <Flex minH="100vh" align="center" justify="center">
+      <Box as="form" onSubmit={handleSubmit} p={8} borderWidth={1} borderRadius="md" boxShadow="md">
+        <Heading mb={6}>Login</Heading>
+        <FormControl mb={4}>
+          <FormLabel>Username</FormLabel>
+          <Input value={username} onChange={(e) => setUsername(e.target.value)} />
+        </FormControl>
+        <FormControl mb={6}>
+          <FormLabel>Password</FormLabel>
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </FormControl>
+        <Button type="submit" colorScheme="teal" width="full">
+          Log in
+        </Button>
+      </Box>
+    </Flex>
   );
 };
 
