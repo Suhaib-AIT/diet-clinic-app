@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+sqlmodel
+jose
+passlib[bcrypt]

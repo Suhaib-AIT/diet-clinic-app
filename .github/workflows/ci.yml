@@ -1,0 +1,36 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Install backend deps
+        run: |
+          pip install -r backend/requirements.txt
+      - name: Lint backend
+        run: |
+          pip install ruff black
+          ruff backend
+      - name: Test backend
+        run: |
+          pip install pytest
+          pytest backend/tests
+      - name: Install frontend deps
+        run: |
+          cd frontend && npm ci
+      - name: Test frontend
+        run: |
+          cd frontend && npm test -- --run
