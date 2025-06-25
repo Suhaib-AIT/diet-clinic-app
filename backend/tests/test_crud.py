@@ -1,4 +1,7 @@
 import pytest
+
+pytest.importorskip("sqlmodel")
+
 from sqlmodel import Session
 from .. import models, schemas, crud
 from ..database import engine
