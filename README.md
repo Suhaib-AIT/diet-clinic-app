@@ -1,27 +1,13 @@
-# Diet Clinic Backend
+# Diet Clinic Management System
 
-This repository contains a minimal FastAPI backend for a diet clinic management application.
-It uses SQLite for persistence and JWT for authentication.
+This monorepo contains a FastAPI backend and a React portal for managing a diet clinic.
 
-## Features
-- User roles: admin, dietitian, patient
-- Models: User, Appointment, DietPlan, FoodLog
-- JWT login system
-- Docker support
+## Quick Start
 
-## Development
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-2. Run the application:
-   ```bash
-   uvicorn app.main:app --reload
-   ```
-
-## Docker
-Build and run the image:
 ```bash
-docker build -t diet-clinic .
-docker run -p 8000:8000 diet-clinic
+make dev-up
 ```
+
+This command builds the Docker containers and starts the backend, frontend and database.
+
+The app will be available at `http://localhost:3000`.
